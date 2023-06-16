@@ -1,0 +1,4 @@
+# Log some prediction samples
+log_prediction_samples:
+  _target_: utils.callbacks.LogPredictionSamplesCallback
+  n: 4

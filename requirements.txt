@@ -1,0 +1,27 @@
+transformers~=4.29.1
+datasets~=2.12.0
+evaluate~=0.4.0
+
+numpy~=1.23.5
+numba~=0.56.4
+scikit-learn~=1.2.2
+pytorch-lightning~=2.0.2
+torchvision~=0.15.1
+opencv-python~=4.7.0.72
+# --- config & logging ---
+wandb~=0.15.2
+omegaconf~=2.3.0
+hydra-core~=1.3.2
+hydra-colorlog~=1.2.0
+rich~=13.3.5            # beautiful text formatting in terminal
+webcolors~=1.13
+prettytable
+# --- other ---
+pyrootutils~=1.0.4     # standardizing the project root setup
+pre-commit~=3.3.1      # hooks for applying linters on commit
+black~=23.3.0           # Python code formatter
+flake8~=6.0.0          # python linter
+isort~=5.12.0           # sort python imports
+
+# --- personal/optional ---
+# jupyter_contrib_nbextensions

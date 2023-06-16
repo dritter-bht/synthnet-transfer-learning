@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stl-eval-gcuksipk-fix
+spec:
+  restartPolicy: Never
+  containers:
+    - name: stl-eval
+      image: beuthdritter/synthnet-transfer-learning
+      env:
+        - name: GIT_NAME
+          valueFrom:
+            secretKeyRef:
+              name: git-creds
+              key: username
+              optional: false
+        - name: GIT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: git-creds
+              key: token
+              optional: false
+        - name: WANDB_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: wandb-secret
+              key: secret
+              optional: false
+      volumeMounts:
+        - name: synthnet-finetuning-volume
+          mountPath: /workspace/data
+        - name: output-volume
+          mountPath: /workspace/out
+        - name: src-volume
+          mountPath: /src-pv
+        - name: dshm
+          mountPath: /dev/shm
+      command: ["/bin/bash", "-c"]
+      args:
+        # - while true; do sleep 30; done;
+        - cd /src-pv/synthnet-transfer-learning;
+          git checkout main;
+          git pull;
+          cd /workspace;
+          cp -r /src-pv/synthnet-transfer-learning/* /workspace;
+          python -u src/eval.py -m 'experiment=
+          STL-visda2017/src_only/_eval_generic'
+      resources:
+        limits:
+          nvidia.com/gpu: 1
+          # memory: 64
+          # cpu: 16
+  nodeSelector:
+    gpu: v100
+  volumes:
+    - name: synthnet-finetuning-volume
+      persistentVolumeClaim:
+        claimName: synthnet-finetuning-pvc
+    - name: output-volume
+      persistentVolumeClaim:
+        claimName: output-pvc
+    - name: src-volume
+      persistentVolumeClaim:
+        claimName: src-pvc
+    - name: dshm
+      emptyDir:
+        medium: Memory

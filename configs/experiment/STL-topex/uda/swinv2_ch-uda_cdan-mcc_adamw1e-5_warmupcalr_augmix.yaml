@@ -1,0 +1,61 @@
+# @package _global_
+
+defaults:
+  - override /data: adaptation_topex.yaml
+  - override /model: vit_cdan.yaml
+  - override /callbacks: default_ada.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags:
+  [
+    "topex",
+    "swinv2",
+    "Domain Adaptation",
+    "CDAN-MCC",
+    "CosineAnnealingLR",
+    "augmix",
+  ]
+
+seed: 42
+
+trainer:
+  min_epochs: 1
+  max_epochs: 20
+
+model:
+  model_name: microsoft/swinv2-base-patch4-window12-192-22k
+  fine_tuning_checkpoint: out/synthnet-transfer-learning-outputs/train/multiruns/STL-topex/src_only/swinv2_ch_sgd1e-3.yaml/2023-06-09_10-41-30/2/checkpoints/epoch_019.ckpt
+  optimizer:
+    _target_: torch.optim.AdamW
+    _partial_: true
+    lr: 0.00001
+    weight_decay: 0.01
+  scheduler:
+    _target_: transformers.get_cosine_schedule_with_warmup
+    _partial_: true
+    num_warmup_steps: 2
+    num_training_steps: ${trainer.max_epochs}
+    # num_cycles: 0.5
+    # last_epoch: -1
+  cdan_ddisc_in_feature: 1024
+  cdan_ddisc_hidden_size: 1024
+  mcc: true
+
+logger:
+  wandb:
+    project: STL-topex
+    job_type: "Domain Adaptation"
+    name: ${hydra:runtime.choices.experiment}
+    tags: ${tags}
+
+data:
+  image_size_h: 192
+  image_size_w: 192
+  random_horizontal_flip: true
+  random_vertical_flip: false
+  random_color_jitter: false
+  random_grayscale: false
+  augmix: true

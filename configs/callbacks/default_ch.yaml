@@ -1,0 +1,27 @@
+defaults:
+  - model_checkpoint.yaml
+  - model_summary.yaml
+  - rich_progress_bar.yaml
+  - log_prediction_samples.yaml
+  - log_training_samples.yaml
+  - learning_rate_monitor.yaml
+  - freeze_all_but_last.yaml
+  - log_layers_requires_grad.yaml
+  - _self_
+
+model_checkpoint:
+  dirpath: ${paths.output_dir}/checkpoints
+  filename: "epoch_{epoch:03d}"
+  monitor: "val/acc"
+  mode: "max"
+  save_last: True
+  auto_insert_metric_name: False
+
+model_summary:
+  max_depth: -1
+
+log_prediction_samples:
+  n: 8
+
+log_training_samples:
+  n: 8

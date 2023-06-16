@@ -1,0 +1,53 @@
+# @package _global_
+
+defaults:
+  - override /data: generic_visda2017.yaml
+  - override /model: vit.yaml
+  - override /callbacks: default_ft.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags:
+  ["visda2017", "vitb16", "fine tuning (CH-FT)", "CosineAnnealingLR", "augmix"]
+
+seed: 42
+
+trainer:
+  min_epochs: 1
+  max_epochs: 20
+
+model:
+  # Load model from checkpoint (weights only)
+  _target_: models.vit_module.VitModule.load_from_checkpoint
+  checkpoint_path: out/synthnet-transfer-learning-outputs/train/multiruns/STL-visda2017/vitb16_ch_sgd1e-3/2023-04-21_14-13-45/2/checkpoints/epoch_000.ckpt
+  model_name: "google/vit-base-patch16-224-in21k"
+  optimizer:
+    _target_: torch.optim.AdamW
+    _partial_: true
+    lr: 0.00001
+    weight_decay: 0.01
+  scheduler:
+    _target_: transformers.get_cosine_schedule_with_warmup
+    _partial_: true
+    num_warmup_steps: 2
+    num_training_steps: ${trainer.max_epochs}
+    # num_cycles: 0.5
+    # last_epoch: -1
+
+logger:
+  wandb:
+    project: STL-visda2017
+    job_type: "fine tuning (CH-FT)"
+    name: ${hydra:runtime.choices.experiment}
+    tags: ${tags}
+
+data:
+  image_size_h: 224
+  image_size_w: 224
+  random_horizontal_flip: true
+  random_vertical_flip: false
+  random_color_jitter: false
+  random_grayscale: false
+  augmix: true

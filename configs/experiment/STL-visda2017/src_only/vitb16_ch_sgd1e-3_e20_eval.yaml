@@ -1,0 +1,29 @@
+# @package _global_
+
+defaults:
+  - override /data: generic_visda2017.yaml
+  - override /model: vit.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["visda2017", "vitb16", "imagenet 22k", "eval only"]
+
+seed: 42
+
+model:
+  model_name: "google/vit-base-patch16-224-in21k"
+
+ckpt_path: "out//synthnet-transfer-learning-outputs/train/multiruns/STL-visda2017/vitb16_ch_sgd1e-3/2023-04-21_14-13-45/2/checkpoints/last.ckpt"
+
+logger:
+  wandb:
+    project: STL-visda2017
+    job_type: "eval pretrained base model"
+    name: ${hydra:runtime.choices.experiment}
+    tags: ${tags}
+
+data:
+  image_size_h: 224
+  image_size_w: 224

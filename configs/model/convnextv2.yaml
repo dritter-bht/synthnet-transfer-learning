@@ -1,0 +1,23 @@
+_target_: models.convnextv2_module.ConvNextV2Module
+
+model_name: "facebook/convnextv2-base-22k-224"
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 0.001
+  weight_decay: 0.1
+
+scheduler:
+  null
+  # _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+  # _partial_: true
+  # T_max: ${trainer.max_epochs}
+  # verbose: false
+# scheduler:
+#   _target_: torch.optim.lr_scheduler.LinearLR
+#   _partial_: true
+#   start_factor: 0.1
+#   end_factor: 1.0
+#   total_iters: 2
+#   verbose: true

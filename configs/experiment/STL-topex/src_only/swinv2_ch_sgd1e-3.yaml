@@ -1,0 +1,38 @@
+# @package _global_
+
+defaults:
+  - override /data: generic_topex.yaml
+  - override /model: vit.yaml
+  - override /callbacks: default_ch.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["topex", "swinv2", "class head only", "SGD", "baseline augmentations"]
+
+seed: 42
+
+trainer:
+  min_epochs: 1
+  max_epochs: 20
+
+model:
+  model_name: "microsoft/swinv2-base-patch4-window12-192-22k"
+  optimizer:
+    _target_: torch.optim.SGD
+    lr: 0.001
+    momentum: 0.9
+    weight_decay: 0.0
+  scheduler: null
+
+logger:
+  wandb:
+    project: STL-topex
+    job_type: "class head only"
+    name: ${hydra:runtime.choices.experiment}
+    tags: ${tags}
+
+data:
+  image_size_h: 192
+  image_size_w: 192

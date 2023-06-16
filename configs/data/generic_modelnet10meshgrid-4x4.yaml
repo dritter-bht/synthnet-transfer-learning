@@ -1,0 +1,19 @@
+_target_: datamodules.generic_finetune_dm.GenericFinetuneDM
+train_dir: ${paths.data_dir}modelnet10meshgrid-4x4/train
+val_dir: ${paths.data_dir}modelnet10meshgrid-4x4/test
+test_dir: ${paths.data_dir}modelnet10meshgrid-4x4/test
+batch_size: 32
+num_workers: 4
+toy: false
+image_size_h: 224
+image_size_w: 224
+image_mean: [0.5, 0.5, 0.5]
+image_std: [0.5, 0.5, 0.5]
+resize: true
+random_resized_crop: false
+center_crop: false
+random_horizontal_flip: false
+random_vertical_flip: false
+random_color_jitter: false
+random_grayscale: false
+augmix: false

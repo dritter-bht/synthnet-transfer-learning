@@ -1,0 +1,4 @@
+# Log some prediction samples
+log_training_samples:
+  _target_: utils.callbacks.LogTrainingSamplesCallback
+  n: 4

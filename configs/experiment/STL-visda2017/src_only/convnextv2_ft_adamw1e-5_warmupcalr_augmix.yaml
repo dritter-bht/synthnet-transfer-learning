@@ -1,0 +1,49 @@
+# @package _global_
+
+defaults:
+  - override /data: generic_visda2017.yaml
+  - override /model: convnextv2.yaml
+  - override /callbacks: default_ft.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["visda2017", "convnextv2", "fine tuning", "CosineAnnealingLR", "augmix"]
+
+seed: 42
+
+trainer:
+  min_epochs: 1
+  max_epochs: 20
+
+model:
+  model_name: "facebook/convnextv2-base-22k-224"
+  optimizer:
+    _target_: torch.optim.AdamW
+    _partial_: true
+    lr: 0.00001
+    weight_decay: 0.01
+  scheduler:
+    _target_: transformers.get_cosine_schedule_with_warmup
+    _partial_: true
+    num_warmup_steps: 2
+    num_training_steps: ${trainer.max_epochs}
+    # num_cycles: 0.5
+    # last_epoch: -1
+
+logger:
+  wandb:
+    project: STL-visda2017
+    job_type: "fine tuning"
+    name: ${hydra:runtime.choices.experiment}
+    tags: ${tags}
+
+data:
+  image_size_h: 224
+  image_size_w: 224
+  random_horizontal_flip: true
+  random_vertical_flip: false
+  random_color_jitter: false
+  random_grayscale: false
+  augmix: true

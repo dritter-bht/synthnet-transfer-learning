@@ -1,0 +1,27 @@
+# @package _global_
+
+defaults:
+  - override /data: generic_visda2017.yaml
+  - override /model: vit.yaml
+  - override /trainer: default.yaml
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+tags: ["visda2017", "swinv2", "imagenet 22k", "eval only"]
+
+seed: 42
+
+model:
+  model_name: "microsoft/swinv2-base-patch4-window12-192-22k"
+
+logger:
+  wandb:
+    project: STL-visda2017
+    job_type: "eval pretrained base model"
+    name: ${hydra:runtime.choices.experiment}
+    tags: ${tags}
+
+data:
+  image_size_h: 224
+  image_size_w: 224

@@ -1,0 +1,20 @@
+_target_: datamodules.generic_adaptation_dm.GenericAdaptationDM
+train_src_dirs: [data/visda2017/train]
+train_target_dirs: [data/visda2017/test]
+val_dirs: [data/visda2017/val]
+test_dirs: [data/visda2017/test]
+batch_size: 32
+num_workers: 4
+toy: false
+image_size_h: 224
+image_size_w: 224
+image_mean: [0.5, 0.5, 0.5]
+image_std: [0.5, 0.5, 0.5]
+resize: false
+random_resized_crop: true
+center_crop: false
+random_horizontal_flip: true
+random_vertical_flip: false
+random_color_jitter: true
+random_grayscale: true
+augmix: false

@@ -1,0 +1,18 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: generic_visda2017.yaml # choose datamodule with `test_dataloader()` for evaluation
+  - model: vit.yaml
+  - logger: wandb
+  - trainer: default.yaml
+  - paths: default.yaml
+  - extras: default.yaml
+  - hydra: default.yaml
+
+  - experiment: null
+
+task_name: "eval"
+
+tags: ["dev"]
+# ckpt_path: out/train/runs/toy/toy_vitb16_visda2017_lp20/2023-03-21_10-15-15/checkpoints/last.ckpt

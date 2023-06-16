@@ -1,0 +1,3 @@
+# Log some prediction samples
+freeze_all_but_last:
+  _target_: utils.callbacks.FreezeAllButLast

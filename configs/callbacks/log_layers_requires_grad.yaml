@@ -1,0 +1,3 @@
+# Log requires_grad property for all layers
+log_layers_requires_grad:
+  _target_: utils.callbacks.LogLayersRequiresGrad
