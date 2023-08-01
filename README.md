@@ -39,13 +39,12 @@ pip install -r requirements.txt
 
 ### Prepare VisDa-2017 Image Classification dataset for experiments
 
-- Get the Visda2017 Dataset from ![the official website](http://ai.bu.edu/visda-2017/) and store it under `data/visda2017`.
-  Ensure the following directory structure: `data/visda2017/<split>/<class>/<images>`. You also have to rename and restructure the test set using the ![released labels](https://raw.githubusercontent.com/VisionLearningGroup/taskcv-2017-public/master/classification/data/image_list.txt) for image ids.
+- Get the Visda2017 Dataset from [the official website](http://ai.bu.edu/visda-2017/) and store it under `data/visda2017`.
+  Ensure the following directory structure: `data/visda2017/<split>/<class>/<images>`. You also have to rename and restructure the test set using the [released labels](https://raw.githubusercontent.com/VisionLearningGroup/taskcv-2017-public/master/classification/data/image_list.txt) for image ids.
 
 ### Prepare Topex-Printer dataset for experiments
 
-- Download the dataset from ![HERE](https://huggingface.co/datasets/)
-ritterdennis/topex-printer/resolve/main/topex-printer.zip)
+- Download the dataset [HERE](https://huggingface.co/datasets/ritterdennis/topex-printer/resolve/main/topex-printer.zip)
 - move dataset directory to `data/topex-printer`
 
 ### Prepare other datasets
@@ -54,7 +53,7 @@ ritterdennis/topex-printer/resolve/main/topex-printer.zip)
 
 ### Notes
 
-- Logging is setup for ![Weights & Biases](https://wandb.com)
+- Logging is setup for [Weights & Biases](https://wandb.com)
 - We integrated tllib directly into the project and fixed some issues for usage with pytorch-lightning 2.0
 
 ## How To Run
