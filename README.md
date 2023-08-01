@@ -74,7 +74,7 @@ First, tune the classification head by running
 python src/train.py -m 'experiment=STL-visda2017/src_only/swinv2_ch_sgd1e-3'
 ```
 
-Then navigate to the best saved checkpoint from this run and initialize the model weights from it to continue training in a UDA setup:
+Then navigate to the best saved checkpoint from this run and initialize the model weights from it to continue training in an Unsupervised Domain Adaptation (UDA) setup:
 
 ```bash
 python src/train.py -m 'experiment=STL-visda2017/uda/swinv2_ch-uda_cdan-mcc_adamw1e-5_warmupcalr_augmix' model.fine_tuning_checkpoint=<PATH/TO/MY/CHECKPOINT/epoch_0XX.ckpt>
@@ -89,7 +89,7 @@ First, tune the classification head by running
 python src/train.py -m 'experiment=STL-topex/src_only/swinv2_ch_sgd1e-3'
 ```
 
-Then navigate to the best saved checkpoint from this run and initialize the model weights from it to continue training in a UDA setup:
+Then navigate to the best saved checkpoint from this run and initialize the model weights from it to continue training in an Unsupervised Domain Adaptation (UDA) setup:
 
 ```bash
 python src/train.py -m 'experiment=STL-topex/uda/swinv2_ch-uda_cdan-mcc_adamw1e-5_warmupcalr_augmix' model.fine_tuning_checkpoint=<PATH/TO/MY/CHECKPOINT/epoch_0XX.ckpt>
