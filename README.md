@@ -10,8 +10,8 @@
 [![isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/) <br>
 <a href="https://github.com/ashleve/lightning-hydra-template"><img alt="Template" src="https://img.shields.io/badge/-Lightning--Hydra--Template-017F2F?style=flat&logo=github&labelColor=gray"></a><br>
 
-<!-- [![Paper](img)](link)
-[![Conference](img)](link) -->
+[![Paper]([img](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336))](paper.pdf)
+<!-- [![Conference](img)](link) -->
 
 </div>
 
@@ -43,7 +43,8 @@ pip install -r requirements.txt
 
 ### Prepare Topex-Printer dataset for experiments
 
-- Download the dataset from ![HERE](<>)
+- Download the dataset from ![HERE](https://huggingface.co/datasets/
+ritterdennis/topex-printer/resolve/main/topex-printer.zip)
 - move dataset directory to `data/topex-printer`
 
 ### Prepare other datasets
