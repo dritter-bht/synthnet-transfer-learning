@@ -54,7 +54,7 @@ pip install -r requirements.txt
 ### Notes
 
 - Logging is setup for [Weights & Biases](https://wandb.com)
-- We integrated tllib directly into the project and fixed some issues for usage with pytorch-lightning 2.0
+- We integrated [tllib](https://github.com/thuml/Transfer-Learning-Library) directly into the project and fixed some issues for usage with pytorch-lightning 2.0
 
 ## How To Run
 
@@ -108,4 +108,9 @@ You can override any parameter from command line without changing any config fil
 
 ```bash
 python src/train.py experiment=my_experiment trainer.max_epochs=10 data.batch_size=64
+```
+## Citation
+Reference for our Topex-Printer dataset and paper
+```
+Coming Soon..
 ```
