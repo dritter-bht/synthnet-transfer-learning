@@ -23,7 +23,7 @@ SynthNet Transfer Learning is a transfer learning framework based on Pytorch Lig
 
 ```bash
 # clone project
-git clone git@gitlab.bht-berlin.de:iisy/SynthNet/synthnet-transfer-learning.git
+git clone git@github.com:dritter-bht/synthnet-transfer-learning.git
 cd synthnet-transfer-learning
 
 # [OPTIONAL] create virtual environment and activate it
