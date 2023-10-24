@@ -110,7 +110,7 @@ You can override any parameter from command line without changing any config fil
 python src/train.py experiment=my_experiment trainer.max_epochs=10 data.batch_size=64
 ```
 ## Citation
-Please cite our paper if you use this Code or the Topex-Printer dataset. 
+Please cite our (https://arxiv.org/abs/2310.04757)[paper] if you use this Code or the Topex-Printer dataset. 
 ```
 @misc{ritter2023cad,
       title={CAD Models to Real-World Images: A Practical Approach to Unsupervised Domain Adaptation in Industrial Object Classification}, 
